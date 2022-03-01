@@ -1,11 +1,9 @@
-use ferris_says::say;
-use std::io::{stdout, BufWriter};
+use std::fs::File;
 
-fn main() {
-    let stdout = stdout();
-    let message = String::from("Hello World!");
-    let width = message.chars().count();
+fn main() -> std::io::Result<()> {
+    let f = File::create("foo.txt")?;
+    let metadata = f.metadata()?;
 
-    let mut writer = BufWriter::new(stdout.lock());
-    say(message.as_bytes(), width, &mut writer).unwrap();
+    assert_eq!(false, metadata.permissions().readonly());
+    Ok(())
 }
