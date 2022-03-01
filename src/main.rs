@@ -1,11 +1,6 @@
-use ferris_says::say;
-use std::io::{stdout, BufWriter};
+mod users;
+use users::{create_user};
 
 fn main() {
-    let stdout = stdout();
-    let message = String::from("Hello World!");
-    let width = message.chars().count();
-
-    let mut writer = BufWriter::new(stdout.lock());
-    say(message.as_bytes(), width, &mut writer).unwrap();
+    create_user();
 }
