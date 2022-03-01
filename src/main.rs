@@ -1,11 +1,7 @@
-use ferris_says::say;
-use std::io::{stdout, BufWriter};
+use std::env;
 
 fn main() {
-    let stdout = stdout();
-    let message = String::from("Hello World!");
-    let width = message.chars().count();
-
-    let mut writer = BufWriter::new(stdout.lock());
-    say(message.as_bytes(), width, &mut writer).unwrap();
+    for (key, value) in env::vars() {
+        println!("{}: {}", key, value);
+    }
 }
